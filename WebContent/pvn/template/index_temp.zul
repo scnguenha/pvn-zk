@@ -1,0 +1,107 @@
+<?page title="Viaturas"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?link rel="shortcut icon" type="image/x-icon" href="pvn/images/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="pvn/images/favicon.ico"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk">
+	<div width="100%" height="100%"
+		apply="mz.co.scn.pvn.controller.IndexController">
+
+		<style src="/pvn/css/menuprincipal_style.css" />
+		<style src="/pvn/css/navbar_style.css" />
+
+		<div width="100%" sclass="div_header" height="80px"
+			style="margin-top:5px">
+			<image src="/pvn/images/applogo.png" sclass="image_logo"
+				style="padding:2px; margin-left:10px " height="100%" />
+			<label value="Parques de Viaturas Nguenha"
+				sclass="logo_label" />
+			<h:span
+				style="float:right;position:relative;top:45px;margin-right:5px">
+				<a href="/pvn/page/login.zul">
+					<image src="/pvn/images/user_white16.png" />
+					<label sclass="login_link" value="Login"
+						style="color:#fff;margin-left:10px" />
+				</a>
+			</h:span>
+		</div>
+		<div align="right" width="100%">
+			<a>
+				<label value="Criar Conta" class="login_link_b"
+					style="margin-right;color:#616161" />
+			</a>
+
+		</div>
+
+		<div height="80%" style="margin-top:5px">
+			<borderlayout height="100%">
+				<west width="15%" autoscroll="true" border="none">
+
+					<panel>
+						<panelchildren>
+							<vbox>
+								<toolbarbutton id="tbbToyota"
+									label="TOYOTA" image="/pvn/images/toyota_logo.png" />
+								<toolbarbutton id="tbbNissan"
+									label="NISSAN" image="/pvn/images/nissan_logo.png" />
+								<toolbarbutton id="tbbHonda"
+									label="HONDA" image="/pvn/images/honda_logo.png" />
+								<toolbarbutton id="tbbMitsubishi"
+									label="MITSUBISHI" image="/pvn/images/mitsubishi_logo.png" />
+								<toolbarbutton id="tbbMercedes"
+									label="MERCEDES-BENZ"
+									image="/pvn/images/mercedes_benz_logo.png" />
+								<toolbarbutton id="tbbBmw" label="BMW"
+									image="/pvn/images/bmw_logo.png" />
+								<toolbarbutton id="tbbMazda"
+									label="MAZDA" image="/pvn/images/mazda_logo.png" />
+								<toolbarbutton id="tbbSubaru"
+									label="SUBARU" image="/pvn/images/subaru_logo.png" />
+								<toolbarbutton id="tbbVW"
+									label="VOLKSWAGEN" image="/pvn/images/volkswagen_logo.png" />
+								<toolbarbutton id="tbbSuzuki"
+									label="SUZUKI" image="/pvn/images/suzuki_logo.png" />
+								<toolbarbutton id="tbbLandRover"
+									label="LAND ROVER" image="/pvn/images/land_rover_logo.png" />
+								<toolbarbutton id="tbbIsuzu"
+									label="ISUZU" image="/pvn/images/isuzu_logo.png" />
+								<toolbarbutton id="tbbAudi" label="AUDI"
+									image="/pvn/images/audi_logo.png" />
+								<toolbarbutton id="tbbFord" label="FORD"
+									image="/pvn/images/ford_logo.png" />
+								<toolbarbutton id="tbbDaihatsu"
+									label="DAIHATSU" image="/pvn/images/daihatsu_logo.png" />
+								<toolbarbutton id="tbbLexus"
+									label="LEXUS	" image="/pvn/images/lexus_logo.png" />
+								<toolbarbutton id="tbbKia" label="KIA"
+									image="/pvn/images/kia_logo.png" />
+								<toolbarbutton id="tbbHino" label="HINO"
+									image="/pvn/images/hino_logo.png" />
+								<toolbarbutton id="tbbPeugeot"
+									label="PEUGEOT" image="/pvn/images/peugeot_logo.png" />
+								<toolbarbutton id="tbbVolvo"
+									label="VOLVO" image="/pvn/images/volvo_logo.PNG" />
+								<toolbarbutton id="tbbJaguar"
+									label="JAGUAR" image="/pvn/images/jaguar_logo.png" />
+								<toolbarbutton id="tbbJeep" label="JEEP"
+									image="/pvn/images/jeep_logo.png" />
+								<toolbarbutton id="tbbSsangyong"
+									label="SSANGYONG" image="/pvn/images/ssangyong_logo.png" />
+							</vbox>
+						</panelchildren>
+					</panel>
+				</west>
+				<center autoscroll="true" id="mainContent" border="none"
+					self="@insert(conteudo)">
+
+				</center>
+			</borderlayout>
+		</div>
+
+		<div>
+			<include src="/pvn/menu/rodape.zul" />
+		</div>
+
+	</div>
+
+</zk>

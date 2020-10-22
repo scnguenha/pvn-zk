@@ -1,0 +1,161 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk">
+
+	<h:apply templateURI="/pvn/template/index_temp.zul" />
+
+	<div sclass="padding:10px">
+
+		<div>
+			<grid zclass="GridLayoutNoBorder">
+				<columns>
+					<column width="25%" />
+					<column width="25%" />
+					<column width="25%" />
+					<column width="25%" />
+				</columns>
+
+				<rows zclass="tr_tabela">
+					<row zclass="row">
+						<combobox id="cbMarca" placeholder="Marca"
+							hflex="1" />
+						<combobox id="cbTransmissao"
+							placeholder="Câmbio de Transmissão" hflex="1">
+							<comboitem value="A" label="Automático" />
+							<comboitem value="M" label="Manual" />
+						</combobox>
+						<combobox id="cbConjuntoTrans"
+							placeholder="Conjunto de Transmissão" hflex="1">
+							<comboitem value="4WD"
+								label="Tracção em 4 Rodas" />
+							<comboitem value="2WD"
+								label="Tracção em 2 Rodas" />
+						</combobox>
+
+						<combobox id="cbCor" placeholder="Cor"
+							hflex="1">
+							<comboitem value="Branco" label="Branco" />
+							<comboitem value="Azul" label="Azul" />
+							<comboitem value="Verde" label="Verde" />
+							<comboitem value="Amarelo" label="Amarelo" />
+							<comboitem value="Preto" label="Preto" />
+							<comboitem value="Vermelho"
+								label="Vermelho" />
+							<comboitem value="Rosa" label="Rosa" />
+							<comboitem value="Castanho"
+								label="Castanho" />
+							<comboitem value="Cinzento"
+								label="Cinzento" />
+							<comboitem value="Rocho" label="Rocho" />
+							<comboitem value="Vinho" label="Vinho" />
+							<comboitem value="Laranja" label="Laranja" />
+							<comboitem value="Prata" label="Prata" />
+							<comboitem value="Ouro" label="Ouro" />
+						</combobox>
+					</row>
+
+					<row zclass="row">
+						<combobox id="cbModelo" placeholder="Modelo"
+							hflex="1" />
+						<combobox id="cbCombustivel"
+							placeholder="Combustível" hflex="1">
+							<comboitem value="G" label="Gasolina" />
+							<comboitem value="D" label="Diesel" />
+						</combobox>
+						<hlayout hflex="1">
+							<combobox id="cbAnoMin"
+								placeholder="Ano Min." hflex="1" />
+							<combobox id="cbAnoMax"
+								placeholder="Ano Máx." hflex="1" />
+						</hlayout>
+						<hlayout hflex="1">
+							<combobox id="cbCilindradaMin"
+								placeholder="Cilindr. Min." hflex="1" />
+							<combobox id="cbCilindradaMax"
+								placeholder="Cilindr. Máx." hflex="1" />
+						</hlayout>
+					</row>
+
+					<row zclass="row">
+						<hlayout hflex="1">
+							<combobox id="cbLotacaoMin"
+								placeholder="Lotação Min." hflex="1" />
+							<combobox id="cbLotacaoMax"
+								placeholder="Lotação Máx." hflex="1" />
+						</hlayout>
+						<combobox id="cbParque" hflex="1"
+							placeholder="Parque" />
+						<hlayout hflex="1">
+							<combobox id="cbPrecoMin"
+								placeholder="Preço Min." hflex="1" />
+							<combobox id="cbPrecoMax"
+								placeholder="Preço Máx." hflex="1" />
+						</hlayout>
+						<hlayout hflex="1">
+							<combobox id="cbQuiloMin"
+								placeholder="Quilom. Min." hflex="1" />
+							<combobox id="cbQuiloMax"
+								placeholder="Quilom. Máx." hflex="1" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+		</div>
+
+		<div align="right" width="100%">
+			<button width="12.5%" style="margin-right:5px"
+				id="btPesqViatura" label="Pesquisar"
+				image="/viatura/images/search_white.png" />
+		</div>
+
+
+		<h:div class="div_lista">
+			<listbox id="listViaturas" mold="paging" width="100%"
+				pageSize="7" sclass="lista">
+
+				<listhead sclass="th">
+					<listheader label="Imagem" align="center"
+						width="10%" />
+					<listheader label="Marca / Modelo" width="15%" />
+					<listheader label="Ano" width="5%" align="center" />
+					<listheader label="Motor (cc)" align="center"
+						width="10%" />
+					<listheader label="Quilometr." align="center"
+						width="10%" />
+					<listheader label="Transmissão" width="10%"
+						align="center" />
+					<listheader label="Parque" width="15%" />
+					<listheader label="Preço" width="10%" />
+					<listheader width="15%" align="center" />
+
+				</listhead>
+
+				<template name="model">
+					<listitem sclass="tr">
+						<listcell>
+							<image hflex="1"
+								content="${c:new2('org.zkoss.image.AImage','',each.imagens[0].bs)}"
+								height="70px" sclass="padding:5px" />
+						</listcell>
+						<listcell
+							label="${each.modelo.marca} ${each.modelo}" />
+						<listcell label="${each.anoPub}" />
+						<listcell label="${each.cilindrada}" />
+						<listcell label="${each.quilometragem}" />
+						<listcell label="${each.transmissao}" />
+						<listcell label="${each.parque}" />
+						<listcell label="${each.preco}" />
+
+						<listcell>
+							<button label="Comprar" width="90%"
+								forward="onClick=listViaturas.onBuy"
+								src="/viatura/images/shopping_white.png" />
+						</listcell>
+					</listitem>
+				</template>
+
+			</listbox>
+		</h:div>
+	</div>
+
+</zk>

@@ -1,0 +1,28 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/pvn/css/menuprincipal_style.css" />
+	<style src="/pvn/css/navbar_style.css" />
+
+		<div id="cardLogin" sclass="card_login" align="center"
+			width="100%" height="100%">
+			<div sclass="cardview" width="30%" height="60%"
+				style="padding:20px">
+				<vbox align="center">
+					<image src="/pvn/images/app_logo_colorfull.png"
+						width="25%" height="10%" />
+					<vbox>
+						<textbox placeholder="Utilizador" id="u"
+							name="j_username" width="100%" />
+						<textbox placeholder="Senha" id="p"
+							name="j_password" type="password" />
+						<a>
+							<label value="Esqueceu a senha?"
+								class="login_link_b" style="margin-right;color:#616161" />
+						</a>
+						<button label="Entrar" type="submit" />
+					</vbox>
+				</vbox>
+			</div>
+		</div>
+
+</zk>

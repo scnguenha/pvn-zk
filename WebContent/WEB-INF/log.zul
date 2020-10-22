@@ -1,0 +1,11 @@
+<?page title="Log" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Log" border="normal">
+		<script type="text/javascript"
+			src="https://apis.google.com/js/platform.js" async defer>
+			<meta name="google-signin-client_id"
+				content="263728506342-batmt5qlha5sv3mjsak30e5j6721c3o3.apps.googleusercontent.com">
+		</script>
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	</window>
+</zk>

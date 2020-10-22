@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Configure a JDBC datasource for Hibernate to connect with -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/viatura_parque" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<!-- Configure a Hibernate SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="mz.co.scn.pvn" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.default_schema">PVN</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.autocommit">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.use_identifier_rollback">true</prop>
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext
+				</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory
+				</prop>
+
+				<!-- Override default NamingStrategy to ImproveStartegy, understand underscore, 
+					lowercase and uppercase -->
+				<!-- <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop> -->
+
+				<!-- Use connection pool in development mode -->
+				<!--<prop key="hibernate.connection.pool_size">1</prop> -->
+
+				<!-- Use C3P0 connection in Production mode -->
+				<prop key="hibernate.c3p0.min_size">3</prop>
+				<prop key="hibernate.c3p0.max_size">20</prop>
+				<prop key="hibernate.c3p0.timeout">1800</prop>
+				<prop key="hibernate.c3p0.max_statements">50</prop>
+				<prop key="hibernate.c3p0.acquire_increment">1</prop>
+				<prop key="hibernate.c3p0.idle_test_period">100</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative 
+		to JTA) -->
+	<bean id="transactionManager"
+		class=" org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="daoTxTemplate" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="create**">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="save**">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="update**">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="delete**">PROPAGATION_REQUIRED, -Exception</prop>
+				<prop key="remove**">PROPAGATION_REQUIRED, -Exception</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--Todos os DAO's da aplicacao -->
+	<bean id="clienteDAO"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		parent="daoTxTemplate">
+		<property name="target">
+			<bean class="mz.co.scn.pvn.daoimpl.ClienteDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="viaturaDAO"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		parent="daoTxTemplate">
+		<property name="target">
+			<bean class="mz.co.scn.pvn.daoimpl.ViaturaDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="marcaDAO"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		parent="daoTxTemplate">
+		<property name="target">
+			<bean class="mz.co.scn.pvn.daoimpl.MarcaDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="modeloDAO"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		parent="daoTxTemplate">
+		<property name="target">
+			<bean class="mz.co.scn.pvn.daoimpl.ModeloDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="imagemDAO"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		parent="daoTxTemplate">
+		<property name="target">
+			<bean class="mz.co.scn.pvn.daoimpl.ImagemDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="parqueDAO"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		parent="daoTxTemplate">
+		<property name="target">
+			<bean class="mz.co.scn.pvn.daoimpl.ParqueDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+</beans>
+
+

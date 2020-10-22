@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:zksp="http://www.zkoss.org/2008/zkspring/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<global-method-security secured-annotations="enabled" />
+
+	<http auto-config="true">
+
+		<intercept-url pattern="/AcessoInterdito.zul" access="isAuthenticated()" />
+
+		<intercept-url pattern="/pages/common.zul" access="isAuthenticated()" />
+
+		<intercept-url pattern="/**/*.pdf" access="isAuthenticated()" />
+
+		<intercept-url pattern="/login.zul" access="permitAll" />
+
+		<form-login login-page="/pvn/pvn/pages/login.zul" default-target-url="/pages/common.zul"
+			authentication-failure-url="/login.zul?login_error=1" />
+
+		<logout logout-success-url="/login.zul" invalidate-session="true" />
+
+		<!-- <session-management> <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" 
+			/> </session-management> -->
+	</http>
+
+
+	<!-- Use a data source to get user in the database -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="SELECT username, password, nivel FROM Utilizador WHERE username=?"
+				authorities-by-username-query="SELECT u.username, a.idTab FROM utilizador u, Acesso a, grupoutilizador g, grupoutilizador_acesso ga WHERE u.grupoUtilizador_id = g.id AND g.id = ga.grupoUtilizadors_id AND ga.acessos_id = a.id AND username = ?" />
+			<password-encoder base64="false" hash="md5" />
+		</authentication-provider>
+	</authentication-manager>
+
+	
+	<!-- Defining a data source for database -->
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="url"
+			value="jdbc:mysql://localhost:3306/viatura_parque" />
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="" />
+	</beans:bean>
+
+	<!-- Use a Md5 encoder since the user's passwords are stored as Md5 in the 
+		database -->
+	<beans:bean
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"
+		id="passwordEncoder" />
+
+</beans:beans>

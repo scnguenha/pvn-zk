@@ -1,0 +1,173 @@
+<?page title="Registo Cliente" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/pvn/template/index_temp.zul"?>
+
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk">
+	<div id="divRegCliente" width="100%"
+		apply="mz.co.scn.pvn.controller.ClienteController"
+		self="@define(conteudo)">
+		<style src="/pvn/css/menuprincipal_style.css" />
+		<div width="100%" sclass="reg_client">
+
+			<div style="float:left; margin-bottom:10px" width="70%">
+				<grid zclass="GridLayoutNoBorder">
+					<columns>
+						<!-- <column width="15%" align="right" /> -->
+						<column align="left" width="100%" />
+					</columns>
+					<auxhead>
+						<auxheader colspan="2" label="Registo Cliente"
+							zclass="z-auxhead" />
+					</auxhead>
+					<rows sclass="tr_tabela">
+						<row zclass="row">
+							<!-- Nome -->
+							<textbox id="tbNome" width="70%"
+								placeholder="Nome" />
+
+						</row>
+						<row zclass="row">
+							<!-- Apelido -->
+							<textbox id="tbApelido" width="40%"
+								placeholder="Apelido" />
+						</row>
+						<row zclass="row">
+							<!-- Genero -->
+							<radiogroup id="rgGenero" width="70%">
+								<radio label="Masculino"
+									value="Masculino" image="../images/ic_user_boy.png"
+									checked="true" />
+								<radio label="Feminino" value="Feminino"
+									style="margin-left:20px;" image="/pvn/images/ic_user_girl.png" />
+							</radiogroup>
+						</row>
+						<row zclass="row">
+							<!-- Data Nascimento -->
+							<datebox id="dbDataNascimento" width="40%"
+								placeholder="Data de Nascimento" readonly="true"
+								format="dd-MM-yyyy" constraint="no today, no future" />
+						</row>
+						<row zclass="row" id="rUsername"
+							visible="false">
+							Username
+							<textbox id="tbUsername" width="40%"
+								placeholder="Username" />
+						</row>
+						<row zclass="row" id="rPassword"
+							visible="false">
+							Password
+							<textbox type="password" id="tbPassword"
+								placeholder="Password" width="40%" />
+						</row>
+						<row zclass="row" id="rPassword1"
+							visible="false">
+							Password
+							<textbox type="password" id="tbPassword1"
+								placeholder="Re-Type Password" width="40%" />
+						</row>
+						<row zclass="row">
+							<!-- Telemóvel -->
+							<textbox id="tbTelemovel" type="text"
+								placeholder="Telefone" width="40%" />
+						</row>
+
+						<row zclass="row">
+							<!-- Morada -->
+							<textbox id="tbMorada" width="70%"
+								placeholder="Morada" />
+						</row>
+
+						<row zclass="row">
+							<!-- Email -->
+							<textbox id="tbEmail" width="70%"
+								placeholder="Email eg: john.smith@sapo.mz" />
+						</row>
+
+					</rows>
+				</grid>
+			</div>
+			<div style="float:left" width="30%">
+				<div width="100%" align="left">
+					<button id="btAddFotoCliente" width="40px"
+						zclass="button"
+						style="margin-top:5px;border:none;background-color:transparent"
+						src="/pvn/images/ic_add_image.png"
+						upload="true,multiple=false,native" />
+					<label value="Foto" style="margin-left:10px" />
+				</div>
+				<div width="100%" align="left">
+					<image id="imgFotoCliente"
+						src="/pvn/images/userac.png" width="70%"
+						style="margin-top:10px" />
+				</div>
+
+			</div>
+		</div>
+		<div style="clear:both; margin-left:5px">
+			<div align="left">
+				<button id="btGravar" label="Gravar" width="150px"
+					image="../images/ic_diskette.png" />
+				<button id="btPesquisar" label="Pesquisar" width="150px"
+					image="/pvn/images/search.png" visible="false" />
+				<button id="btCancelar" image="/pvn/images/close.png"
+					width="150px" label="Cancelar" visible="false" />
+
+			</div>
+		</div>
+
+		<h:div class="div_lista">
+			<listbox id="listClientes" mold="paging" pageSize="5"
+				sclass="lista">
+				<auxhead>
+					<auxheader colspan="10">
+						<vbox>
+							<bandbox id="bandPesquisa" width="400px"
+								placeholder="Pesquisar aqui..." />
+						</vbox>
+					</auxheader>
+				</auxhead>
+				<listhead sclass="th">
+					<listheader label="Foto" width="70px" />
+					<listheader label="Nome" width="14%" />
+					<listheader label="Apelido" width="10%" />
+					<listheader label="Genero" width="9%" />
+					<listheader label="Data Nasc." width="10%" />
+					<listheader label="Telefone" width="9%" />
+					<listheader label="Morada" width="15%" />
+					<listheader label="Email" width="20%" />
+					<listheader width="4%" align="center" />
+					<listheader width="4%" align="center" />
+
+				</listhead>
+
+				<template name="model">
+					<listitem sclass="tr">
+						<listcell>
+							<image
+								content="${c:new2('org.zkoss.image.AImage','',each.foto.bs)}"
+								height="70px" width="70px" sclass="padding:10px" />
+						</listcell>
+						<listcell label="${each.nome}" />
+						<listcell label="${each.apelido}" />
+						<listcell label="${each.genero}" />
+						<listcell label="${each.data_nasc}" />
+						<listcell label="${each.nrCelular}" />
+						<listcell label="${each.morada}" />
+						<listcell label="${each.email}" />
+						<listcell>
+							<image src="/viatura/images/edit.png"
+								forward="onClick=listClientes.onEdit" />
+						</listcell>
+						<listcell>
+							<image
+								forward="onClick=listClientes.onDetail"
+								src="/viatura/images/ic_list.png" />
+						</listcell>
+					</listitem>
+				</template>
+
+			</listbox>
+		</h:div>
+	</div>
+</zk>

@@ -1,0 +1,289 @@
+@font-face {
+	src: url(../fonts/LesMousquetaires.ttf);
+	font-family: LesMousquetaires;
+}
+
+@font-face {
+	src: url(../fonts/Amontilladios.ttf);
+	font-family: Amontilladios;
+}
+
+@font-face {
+	src: url(../fonts/DiamondePersonalUse.ttf);
+	font-family: DiamondePersonalUse;
+}
+
+.div_header {
+	/* background-color: #016c8f; */
+	background-color: #314d60;
+}
+
+.menubar {
+	border: none;
+	color: white;
+	background-color: transparent;
+}
+
+.div_content {
+	/* 	background-color: #e4e4e4; */
+	
+}
+
+.div_menu {
+	background-color: transparent;
+}
+
+.z-auxhead {
+	font-size: 16px;
+	font-family: sans-serif;
+	/* color: #455a64; */
+	color: #314d60;
+}
+
+.z-label {
+	font-family: serif;
+	margin-right: 30px;
+}
+
+.z-rows :HOVER {
+	
+}
+
+.z-row-inner :HOVER {
+	
+}
+
+.row {
+	
+}
+
+.z-row :HOVER {
+	
+}
+
+.div_botoes {
+	text-align: center;
+	width: 100%;
+	margin-top: 10px;
+	clear: both;
+}
+
+.botoes {
+	width: 100%;
+	height: 60px;
+	background: #ccc;
+	text-align: center;
+}
+
+.GridLayoutNoBorder  tr.z-row td.z-row-inner, tr.z-row .z-cell, div.z-grid
+	{
+	overflow: hidden;
+	zoom: 1;
+	border: none;
+	font-weight: bold;
+	text-align: right;
+}
+
+.z-button {
+	width: 100px;
+}
+
+.div_lista {
+	margin-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+}
+
+.div_fotos {
+	height: 200px;
+	padding: 5px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.z-grid tr.z-row td.z-row-inner, tr.z-row .z-cell, div.z-grid :HOVER {
+	background-color: transparent;
+}
+
+.tr.z-row :ACTIVE :FOCUS {
+	background-color: transparent;
+}
+
+.label {
+	text-align: left;
+}
+
+.lista {
+	border: none;
+	border-style: none;
+	padding: 2px;
+}
+
+.logo_label {
+	color: #fffffe;
+	font-size: 40px;
+	font-family: Amontilladios;
+}
+
+.z-rows:HOVER {
+	background-color: none;
+	background: none;
+}
+
+.z-row:HOVER {
+	background-color: none;
+	background: none;
+}
+
+.z-row GridLayoutNoBorder-odd:HOVER {
+	background-color: none;
+	background: none;
+}
+
+/* .z-textbox:focus, .z-combobox:focus, .z-combobox-readonly:focus, */
+/* 	.z-intbox:focus, .z-doublebox:focus { */
+/* 	-moz-box-shadow: 0 0 4px #88D5E9; */
+/* 	-webkit-box-shadow: 0 0 4px #88D5E9; */
+/* 	box-shadow: 0 0 4px #88D5E9; */
+/* 	border: 1px solid #88D5E9; */
+/* } */
+.footer {
+	font-family: Courier;
+	font-size: 14px;
+}
+
+.foot_div {
+	clear: both;
+	color: #0099cc;
+	margin-top: 20px;
+	margin-bottom: 20px
+}
+
+.div_reg_viatura {
+	padding: 10px;
+}
+
+.div_reg_cliente {
+	padding: 10px;
+}
+
+.menu_label {
+	font-family: cursive;
+	font-size: 20px;
+	text-decoration: none;
+	color: #000;
+}
+
+/* .cardview {
+	
+} */
+a {
+	text-decoration: none;
+	color: #212121;
+}
+
+.ghost_button {
+	display: inline-block;
+	width: 40%;
+	margin-left: 30%;
+	margin-bottom: 12px;
+	padding: 8px;
+	color: #8F8F8F;
+	border: 2px solid #8f8f8f;
+	border-radius: 5px;
+	text-align: center;
+	outline: none;
+	text-decoration: none;
+	clear: both;
+}
+
+.ghost_button:hover, ghost_button:active {
+	background-color: #8f8f8f;
+	color: #FFF;
+	border: 2px solid #FFF;
+}
+
+.cardview {
+	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+	transition: 0.3s;
+	padding: 0;
+	background-color: #fff;
+}
+
+.card_login {
+	padding-top: 12%;
+	background-color: #c0c0c0;
+	/* background-image: url("../images/bg_login.png"); */
+}
+
+.container {
+	padding: 2px 16px;
+}
+
+.ui-panelgrid-content {
+	border: none;
+}
+
+.ui-selectoneradio label {
+	margin-right: 15px;
+}
+
+.ui-growl {
+	top: 70px;
+}
+
+span.z-menu-text {
+	color: #ffffff;
+}
+
+span.z-menu-text:HOVER {
+	color: #000;
+}
+
+li.z-menu {
+	background-color: #016c8f;
+}
+
+span.z-menuitem-text:HOVER {
+	color: #ffffff;
+}
+
+span.z-menuitem-text {
+	color: #000;
+}
+
+.z-menubar-horizontal {
+	background-color: transparent;
+}
+
+.imagem_foto {
+	padding: 5px;
+}
+
+li {
+	border-right: 1px solid #bbb;
+}
+
+li:last-child {
+	border-right: none;
+}
+
+span.div_menu_itens {
+	height: 70px;
+	!
+	important;
+}
+
+span.z-label {
+	height: 70px;
+}
+
+.login_link:hover {
+	border-bottom: 1px solid #fff;
+}
+
+.login_link_b:hover {
+	border-bottom: 1px solid #000;
+}
